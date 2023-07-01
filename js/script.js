@@ -10,7 +10,6 @@ if(localStorage.getItem('theme') == 'light'){
     body.classList.add('light');
 }
 
-
 //arow function
 //Percorrendo a lista de botões e tratando item a item
 btns.forEach((btn) => {
@@ -31,6 +30,11 @@ btns.forEach((btn) => {
 
 
 //-------------------------------------IMC-------------------------------------
+function validarNome(nome) {
+    var regex = /^[a-zA-ZÀ-ÿ\s']+$/;
+    //console.log(regex.test(nome));
+    return regex.test(nome);
+}
 
 const btnCalcular = document.querySelector('#btn-calcular');
 const btnRefazer = document.querySelector('#btn-refazer');
@@ -45,8 +49,9 @@ const nome = document.querySelector('#nome');
 btnCalcular.addEventListener('click',function(){
 
     //se os valores de altura e peso forem diferentes (!=) de vazio ''
-    if(altura.value != '' && peso.value != '' && nome.value != ''){
+    if(altura.value != '' && peso.value != '' && nome.value != '' && validarNome(nome.value)){
 
+        //validarNome(nome.value);
         //console.log(nome.value);
 
         contentForm.style.display = 'none';
@@ -90,7 +95,7 @@ btnCalcular.addEventListener('click',function(){
 
 
     }else{
-        alert('Preencha todos os campos!');
+        alert('Preencha os campos corretamente!');
   }
 })
 
